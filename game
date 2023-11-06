@@ -1,0 +1,71 @@
+//is the game starting point prompt allows player to input choices and play the game 
+const prompt = require("prompt-sync")();
+// prints welcome message to players when entering the game 
+console.log('Welcome to the Climate Change Awareness Game!');
+// keeps track of progress while playing the game 
+let score = 0;
+//gives scenarios to players,keeps track of scorces, evaulate chocies
+function decisionScenario(question, options, correctAnswerIndex) {
+    console.log(question);
+
+//I change the loop condition for (let i = 0; i < options.length; i++) by doing this makes the loops go theough all it options correctly and its index.
+    for (let i = 0; i < options.length; i++) {
+        console.log(`${i + 1}. ${options[i]}`);
+    }
+// I fixed the socre to be 1 so when player answer it will be right 
+    let playerAnswer = parseInt(prompt("Enter your choice (number):")) - 1;
+
+    if (playerAnswer === correctAnswerIndex) {
+        console.log('Correct! You made an environment-friendly decision. +1 point.');
+        score++;
+//add score in the else block so when the plaer answer incorrect the score will decrease 
+    } else {
+        console.log(`Incorrect! The better choice would be: ${options[correctAnswerIndex]}`);
+    }
+}
+
+//updated the fuction to call four other options and set the index to 2 
+//decisionscenario calls all scenario present 
+decisionScenario(
+    'You are going to the supermarket. How do you choose to carry your groceries?',
+    ['Plastic bags provided by the store', 'Bring your own reusable bags', 'Carry them without any bag'],
+//correct answer
+    1
+//scenario of going to the super market and choose what type of bag to carry
+);
+
+decisionScenario(
+    '\nYou are buying a new car. Which type do you choose?',
+    ['A gasoline-powered car', 'A hybrid car', 'An electric car'],
+//correct answer 
+    2
+//scenario of buying a new car and than ask player to choose either gas car,hybrid car,electronic car.
+);
+
+decisionScenario(
+    '\nYou want to dispose of old electronics. What do you do?',
+    ['Throw them in the regular trash', 'Sell or donate them', 'Take them to an e-waste recycling center'],
+//correct answer 
+    2
+//scenraino is dispose of a an old electronic car and how would ypu do it
+);
+
+decisionScenario(
+    '\nYou want to dispose of old electronics. What do you do?',
+    ['Throw them in the regular trash', 'Sell or donate them', 'Take them to an e-waste recycling center', '
+Refurbish and continue using them'],
+//correct answer
+    3
+
+//scenraino is dispose of a an old electronic car and how would ypu do it
+);
+
+//update meal option because there was a typo
+decisionScenario(
+    '\nHow do you prefer to eat your meals?',
+    ['Takeout from restaurants in disposable containers', 'Cooked at home with locally sourced ingredients', 'Processed and packaged meals', 'Home-cooked meals with ingredients from your own garden'],
+ //correct answer  
+        1
+);
+//when the game is over this will pop up the 3 is an example of what the person actual score is 
+console.log(`\nGame Over! Your total score is: ${score}. Thank you for playing.\n`);
